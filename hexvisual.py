@@ -39,15 +39,7 @@ class HexWidget(QWidget):
 
 	def drawHexes(self, qp):
 		for hexa in self.grid.grid:
-			x,y = hexa.hexToPoint(self.hexsize)
-			self.drawHex(x,y,qp)
-
-	def drawHex(self, x, y, qp): # TODO add visual for each type of stone
-		xcorners = [self.center + x + self.hexsize * math.cos(math.radians(60*i + 30)) for i in range(6)]
-		ycorners = [self.center + y + self.hexsize * math.sin(math.radians(60*i + 30)) for i in range(6)]
-		hexCorners = zip(xcorners,ycorners)
-		for l in range(6):
-			qp.drawLine(hexCorners[l][0], hexCorners[l][1],hexCorners[(l + 1) % 6][0], hexCorners[(l + 1) % 6][1])
+			hexa.drawHex(qp, self.hexsize, self.center)
 
 class HexWindow(object):
 	"""Displays a window with a HexWidget.
