@@ -1,10 +1,18 @@
 import sys
 from PyQt5.QtGui import *
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import *
 import math
 import hexgrid
 
 class HexWidget(QWidget):
+	"""Widget displaying a given Grid.
+
+	This class should only be called to embed it in another window.
+
+	Attributes:
+		grid (Grid): a given Grid instance.
+		height (int): the height of the hexagons in the grid in pixels.
+	"""
 
 	def __init__(self, grid, height):
 		super(HexWidget, self).__init__()
@@ -42,7 +50,12 @@ class HexWidget(QWidget):
 			qp.drawLine(hexCorners[l][0], hexCorners[l][1],hexCorners[(l + 1) % 6][0], hexCorners[(l + 1) % 6][1])
 
 class HexWindow(object):
+	"""Displays a window with a HexWidget.
 
+	Attributes:
+		grid (Grid): a given Grid instance.
+		height (int): the height of the hexagons in the grid in pixels.
+	"""
 	def __init__(self, grid, height):
 		app = QApplication(sys.argv)
 		widget = HexWidget(grid, height)

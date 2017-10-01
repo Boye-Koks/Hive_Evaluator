@@ -1,7 +1,15 @@
 import sys
 import math
 
+
 class Grid(object):
+	"""A circular grid of hexagons.
+
+	Attributes:
+		radius (int): the radius of the grid, middle included.
+		grid (list of Hex): list of all hexagons in the grid.
+	"""
+
 
 	def __init__(self, radius):
 		self.radius = radius - 1
@@ -24,15 +32,22 @@ class Grid(object):
 		return self.grid
 
 class Hex(object):
+	"""A hexagon with cubical coordinates.
 
-	def __init__(self, x, y, z, tile=None):
+	The coordinates always add up to 0, default Tile type is "Empty".
+	Attributes:
+		y (int): y coordinate of the hexagon.
+		x (int): x coordinate of the hexagon.
+		z (int): z coordinate of the hexagon.
+		tile (str, optional): type of Tile of the hexagon.
+	"""
+
+
+	def __init__(self, x, y, z, tile="Empty"):
 		self.x = x
 		self.y = y
 		self.z = z
-		if tile:
-			self.tile = tile
-		else:
-			self.tile = Tile()
+		self.tile = tile
 
 	def hexToPoint(self, size):
 		x = 1.0 * size * (self.x + self.z/2.0) * math.sqrt(3)
@@ -46,6 +61,12 @@ class Hex(object):
 		return self.tile
 
 class Tile(object):
+	"""A Tile with its type.
+
+	The default type is "Empty".
+	Attributes:
+		type (str, optional): the type of tile.
+	"""
 
 	def __init__(self, type="Empty"):
 		self.type = type
