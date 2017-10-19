@@ -49,6 +49,10 @@ class HexWindow(object):
 		height (int): the height of the hexagons in the grid in pixels.
 	"""
 	def __init__(self, grid, height):
+		self.grid = grid
+		self.height = height
+
+	def show(self):
 		app = QApplication(sys.argv)
-		widget = HexWidget(grid, height)
+		widget = HexWidget(self.grid, self.height)
 		sys.exit(app.exec_())

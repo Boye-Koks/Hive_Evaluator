@@ -13,7 +13,7 @@ class Grid(object):
 
 
 	def __init__(self, radius):
-		self.radius = radius - 1
+		self.radius = radius
 		self.grid = list()
 		self.initGrid()
 

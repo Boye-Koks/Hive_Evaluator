@@ -17,6 +17,27 @@ class Tile(object):
 	def __repr__(self):
 		return self.type
 
+def toTileFunction(number):
+    """Converts a given int to its corresponding function, according to:
+
+        0       = Empty
+        1,2     = Ant,
+        3,4     = Beetle,
+        5,6     = Grasshopper,
+        7,8     = Ladybug,
+        9,10    = Mosquito,
+        11,12   = Pill Bug,
+        13,14   = Queen,
+        15,16   = Spider
+
+        where the first index is white, second is black
+    """
+    tiles = [empty, white_ant, black_ant, white_beetle, black_beetle, white_grasshopper, black_grasshopper, white_ladybug, black_ladybug, white_mosquito, black_mosquito, white_pillbug, black_pillbug, white_queen, black_queen, white_spider, black_spider]
+    if number < len(tiles):
+        return tiles[number]
+    else:
+        return None
+
 def generic_tile(qp, hexsize, center, x, y, strval):
 	qp.drawText(center + x - 6, center + y + 2, strval) # offset to center text in hex
 	xcorners = [center + x + hexsize * math.cos(math.radians(60*i + 30)) for i in range(6)]
