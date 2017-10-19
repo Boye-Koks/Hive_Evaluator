@@ -23,11 +23,12 @@ class Grid(object):
 				dz = -dx-dy
 				self.grid.append(Hex(dx,dy,dz))
 
-	def setTile(self, x, y, z, name, visual):
-		for hexa in self.grid:
-			if hexa.atPosition(x, y, z):
-				hexa.tile = Tile(name, visual)
-				return True
+	def setTile(self, x, y, z, visual):
+		if visual:
+			for hexa in self.grid:
+				if hexa.atPosition(x, y, z):
+					hexa.tile = Tile(visual)
+					return True
 		return False
 
 	def __str__(self):
@@ -51,11 +52,11 @@ class Hex(object):
 	"""
 
 
-	def __init__(self, x, y, z, tile="Empty"):
+	def __init__(self, x, y, z):
 		self.x = x
 		self.y = y
 		self.z = z
-		self.tile = Tile(tile)
+		self.tile = Tile(empty)
 
 	def hexToPoint(self, size):
 		x = 1.0 * size * (self.x + self.z/2.0) * math.sqrt(3)
